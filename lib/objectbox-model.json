@@ -1,0 +1,222 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:809911937287307525",
+      "lastPropertyId": "6:8587563063839365646",
+      "name": "User",
+      "properties": [
+        {
+          "id": "1:1941519984191485508",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3932237664095723737",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:780841364355862883",
+          "name": "age",
+          "type": 6,
+          "flags": 8,
+          "indexId": "1:726255872690388141"
+        },
+        {
+          "id": "4:8848635698950130431",
+          "name": "emailAddress",
+          "type": 9,
+          "flags": 34848,
+          "indexId": "2:4237212672702418411"
+        },
+        {
+          "id": "5:78315925516284058",
+          "name": "userName",
+          "type": 9,
+          "flags": 2048,
+          "indexId": "3:8322511466505499924"
+        },
+        {
+          "id": "6:8587563063839365646",
+          "name": "privateField",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:5540863766080113280",
+      "lastPropertyId": "4:518348531977396903",
+      "name": "TempEntity",
+      "properties": [
+        {
+          "id": "1:8752902886420371931",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "3:5509928153085408674",
+          "name": "tempId",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3411552520121371402",
+      "lastPropertyId": "2:7999232961592105005",
+      "name": "Course",
+      "properties": [
+        {
+          "id": "1:6113791666118628756",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7999232961592105005",
+          "name": "title",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:7034362558414964854",
+          "name": "students",
+          "targetId": "6:830568589569621221"
+        }
+      ]
+    },
+    {
+      "id": "4:4692573897160168480",
+      "lastPropertyId": "3:5816109062399823233",
+      "name": "Passport",
+      "properties": [
+        {
+          "id": "1:5931474021155170562",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:425671906516307673",
+          "name": "passportNumber",
+          "type": 9
+        },
+        {
+          "id": "3:5816109062399823233",
+          "name": "personId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:5160346207046651804",
+          "relationTarget": "Person"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:2777863112680964994",
+      "lastPropertyId": "3:6714901774665131364",
+      "name": "Person",
+      "properties": [
+        {
+          "id": "1:4619633874203856101",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5592327961352269435",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:6714901774665131364",
+          "name": "passportId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "5:5795253024360146065",
+          "relationTarget": "Passport"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:830568589569621221",
+      "lastPropertyId": "3:1096194592863529639",
+      "name": "Student",
+      "properties": [
+        {
+          "id": "1:3057087372553573198",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7411030304847252600",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:1096194592863529639",
+          "name": "teacherId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "6:326314817228441676",
+          "relationTarget": "Teacher"
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:9149225080051756366",
+          "name": "courses",
+          "targetId": "3:3411552520121371402"
+        }
+      ]
+    },
+    {
+      "id": "7:6133878198734864625",
+      "lastPropertyId": "2:3619818607725430723",
+      "name": "Teacher",
+      "properties": [
+        {
+          "id": "1:4162195528606222219",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3619818607725430723",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:3064509721920846442",
+          "name": "students",
+          "targetId": "6:830568589569621221"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "7:6133878198734864625",
+  "lastIndexId": "6:326314817228441676",
+  "lastRelationId": "3:3064509721920846442",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    591738278221678512,
+    518348531977396903
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
