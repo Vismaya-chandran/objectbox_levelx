@@ -121,7 +121,7 @@
     },
     {
       "id": "5:2777863112680964994",
-      "lastPropertyId": "3:6714901774665131364",
+      "lastPropertyId": "5:1214020533054533960",
       "name": "Person",
       "properties": [
         {
@@ -136,11 +136,11 @@
           "type": 9
         },
         {
-          "id": "3:6714901774665131364",
+          "id": "5:1214020533054533960",
           "name": "passportId",
           "type": 11,
           "flags": 520,
-          "indexId": "5:5795253024360146065",
+          "indexId": "7:993616124877516466",
           "relationTarget": "Passport"
         }
       ],
@@ -203,19 +203,47 @@
           "targetId": "6:830568589569621221"
         }
       ]
+    },
+    {
+      "id": "8:3255443830194671105",
+      "lastPropertyId": "3:4778341130707428478",
+      "name": "Employee",
+      "properties": [
+        {
+          "id": "1:8146675115275526182",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9069746249984333758",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:4778341130707428478",
+          "name": "age",
+          "type": 6
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "7:6133878198734864625",
-  "lastIndexId": "6:326314817228441676",
+  "lastEntityId": "8:3255443830194671105",
+  "lastIndexId": "7:993616124877516466",
   "lastRelationId": "3:3064509721920846442",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    5795253024360146065
+  ],
   "retiredPropertyUids": [
     591738278221678512,
-    518348531977396903
+    518348531977396903,
+    6714901774665131364,
+    7197645404229294310
   ],
   "retiredRelationUids": [],
   "version": 1

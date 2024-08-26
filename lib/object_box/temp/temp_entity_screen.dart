@@ -12,7 +12,8 @@ class TempEntityScreen extends StatefulWidget {
 class _TempEntityScreenState extends State<TempEntityScreen> {
   late Box<TempEntity> tempEntity;
   List<TempEntity> datas = [];
-  @override
+  @override  
+  
   void initState() {
     tempEntity = widget.store.box<TempEntity>();
     getData();

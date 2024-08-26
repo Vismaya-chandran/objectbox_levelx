@@ -16,6 +16,7 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'object_box/relation/relation.dart';
 import 'object_box/temp/temp.dart';
+import 'object_box/transactions/entity.dart';
 import 'object_box/user/entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -135,7 +136,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(5, 2777863112680964994),
       name: 'Person',
-      lastPropertyId: const obx_int.IdUid(3, 6714901774665131364),
+      lastPropertyId: const obx_int.IdUid(5, 1214020533054533960),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -149,11 +150,11 @@ final _entities = <obx_int.ModelEntity>[
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 6714901774665131364),
+            id: const obx_int.IdUid(5, 1214020533054533960),
             name: 'passportId',
             type: 11,
             flags: 520,
-            indexId: const obx_int.IdUid(5, 5795253024360146065),
+            indexId: const obx_int.IdUid(7, 993616124877516466),
             relationTarget: 'Passport')
       ],
       relations: <obx_int.ModelRelation>[],
@@ -212,6 +213,30 @@ final _entities = <obx_int.ModelEntity>[
             name: 'students',
             targetId: const obx_int.IdUid(6, 830568589569621221))
       ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(8, 3255443830194671105),
+      name: 'Employee',
+      lastPropertyId: const obx_int.IdUid(3, 4778341130707428478),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 8146675115275526182),
+            name: 'id',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 9069746249984333758),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 4778341130707428478),
+            name: 'age',
+            type: 6,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -250,13 +275,18 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(7, 6133878198734864625),
-      lastIndexId: const obx_int.IdUid(6, 326314817228441676),
+      lastEntityId: const obx_int.IdUid(8, 3255443830194671105),
+      lastIndexId: const obx_int.IdUid(7, 993616124877516466),
       lastRelationId: const obx_int.IdUid(3, 3064509721920846442),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [591738278221678512, 518348531977396903],
+      retiredIndexUids: const [5795253024360146065],
+      retiredPropertyUids: const [
+        591738278221678512,
+        518348531977396903,
+        6714901774665131364,
+        7197645404229294310
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -410,10 +440,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (Person object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
-          fbb.startTable(4);
+          fbb.startTable(6);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
-          fbb.addInt64(2, object.passport.targetId);
+          fbb.addInt64(4, object.passport.targetId);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -426,7 +456,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 6, '');
           final object = Person(id: idParam, name: nameParam);
           object.passport.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
           object.passport.attach(store);
           return object;
         }),
@@ -490,6 +520,36 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final object = Teacher(id: idParam, name: nameParam);
           obx_int.InternalToManyAccess.setRelInfo<Teacher>(object.students,
               store, obx_int.RelInfo<Teacher>.toMany(3, object.id));
+          return object;
+        }),
+    Employee: obx_int.EntityDefinition<Employee>(
+        model: _entities[7],
+        toOneRelations: (Employee object) => [],
+        toManyRelations: (Employee object) => {},
+        getId: (Employee object) => object.id,
+        setId: (Employee object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Employee object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          fbb.startTable(4);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addInt64(2, object.age);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final idParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final nameParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final ageParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final object = Employee(id: idParam, name: nameParam, age: ageParam);
+
           return object;
         })
   };
@@ -609,4 +669,19 @@ class Teacher_ {
   /// see [Teacher.students]
   static final students =
       obx.QueryRelationToMany<Teacher, Student>(_entities[6].relations[0]);
+}
+
+/// [Employee] entity fields to define ObjectBox queries.
+class Employee_ {
+  /// See [Employee.id].
+  static final id =
+      obx.QueryIntegerProperty<Employee>(_entities[7].properties[0]);
+
+  /// See [Employee.name].
+  static final name =
+      obx.QueryStringProperty<Employee>(_entities[7].properties[1]);
+
+  /// See [Employee.age].
+  static final age =
+      obx.QueryIntegerProperty<Employee>(_entities[7].properties[2]);
 }

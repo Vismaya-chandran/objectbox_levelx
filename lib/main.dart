@@ -4,6 +4,8 @@ import 'package:riverpod_project/object_box/relation/relationship_view.dart';
 import 'package:riverpod_project/object_box/store/object_box.dart';
 import 'package:riverpod_project/objectbox.g.dart';
 
+import 'object_box/transactions/transactions_view.dart';
+
 late ObjectBox objectBox;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,18 +21,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Object Box',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        home: RelationshipsScreen(store: objectBox.store)
-        /*    home: TempEntityScreen(
+      debugShowCheckedModeBanner: false,
+      title: 'Object Box',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: TransactionsView(store: objectBox.store),
+      // home: RelationshipsScreen(store: objectBox.store)
+      /*    home: TempEntityScreen(
         store: objectBox.store,
       ), */
-        // home: ObjectboxView(store: objectBox.store),
-        );
+      // home: ObjectboxView(store: objectBox.store),
+    );
   }
 }
 
